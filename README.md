@@ -10,7 +10,8 @@ Access to XMLHttpRequest at '.m3u8' from origin 'null' has been blocked by CORS 
 Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
 </i>
 
-to generate TS segments
+
+<font color="RED">to generate TS segments</font>
 
 <code>
   ffmpeg -i input.mp4 -hls_time 10 -hls_list_size 0 -bsf:v h264_mp4toannexb -hls_segment_filename 'o_%03d.ts' out.m3u8
