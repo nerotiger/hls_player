@@ -6,17 +6,29 @@
 
 <video controls id="v" width="500"></video>
 <br /><br /> 
-<input type="button" value="Control" onclick="toggleControls(self);" />
+<input type="button" id="c" style="width: 100px;" value="Control" onclick="toggleControls();" />
+<input type="button" id="p" style="width: 100px;" value="Play" onclick="ppp();" />
 <script> 
 
-function toggleControls(c) {
-  if (video.hasAttribute("controls")) {
-     video.removeAttribute("controls");   
+function toggleControls() {
+  if (v.hasAttribute("controls")) {
+     v.removeAttribute("controls");   
      c.value = "Hide Control";
   } else {
-     video.setAttribute("controls", "controls");   
+     v.setAttribute("controls", "controls");   
      c.value = "Show Control";
   }
+}
+
+function ppp() {
+    if(v.paused) {
+	p.value = "Pause";
+	v.play();
+    }
+    else {
+	p.value = "Play";
+	v.pause();
+    }
 }
  
 if(Hls.isSupported()) {
