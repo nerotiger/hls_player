@@ -1,0 +1,43 @@
+<html>
+<head>
+<script src="hls.js"></script>  
+</head>
+<body>
+
+<video controls id="v"></video>  
+<p onclick="toggleControls();">Toggle</p>
+<script> 
+
+function toggleControls() {
+  if (video.hasAttribute("controls")) {
+     video.removeAttribute("controls")   
+  } else {
+     video.setAttribute("controls","controls")   
+  }
+}
+ 
+if(Hls.isSupported()) {
+    var video = document.getElementById('v');
+    var hls = new Hls();
+    hls.loadSource('./out.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
+      console.log("manifest loaded, found " + data.levels.length + " quality level");
+
+      var playPromise = video.play();
+
+      if (playPromise !== undefined) {
+
+        playPromise.then(_ => {
+      // 这个时候可以安全的暂停
+          video.pause();
+        })
+      .catch(error => {
+        });
+      }
+
+    });
+}
+</script>  
+</body>
+</html>
